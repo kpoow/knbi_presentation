@@ -4,7 +4,6 @@ import requests
 import json
 import os
 from urllib.parse import urlparse
-from Authenticator import Authenticator
 
 
 app = Flask(__name__)
