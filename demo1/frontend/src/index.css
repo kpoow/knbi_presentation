@@ -1,0 +1,31 @@
+.App {
+    text-align: left;
+    font-size: 30px;
+    color: black;
+    background-color: white;
+    font: 40px 
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+
+
+  .App-header {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color:chocolate;
+  }
+
+  .button{
+      width: fit-content;
+      height: 5vh;
+      padding-left: 2vh;
+      margin: 2px;
+      
+  }

@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5001:5000"
+    environment:
+      - EQUINIX_CLIENT_ID=${EQUINIX_CLIENT_ID}
+      - EQUINIX_CLIENT_SECRET=${EQUINIX_CLIENT_SECRET}
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
