@@ -32,7 +32,7 @@ class Board extends React.Component{
         }
         console.log(metroCode[name])
         const buttons = this.state.buttons;
-        axios.post("http://127.0.0.1:5001/router",{'url':'https://uatapi.equinix.com/fabric/v4/metros/'+metroCode[name],'method':'get','metro_code':metroCode[name]})
+        axios.post("http://127.0.0.1:5001/router",{'url':'https://playgroundapi.equinix.com/fabric/v4/metros/'+metroCode[name],'method':'get','metro_code':metroCode[name]})
             .then((response) =>{
                 console.log('Status set to ', response.data);
                 this.setState({

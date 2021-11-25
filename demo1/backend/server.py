@@ -2,14 +2,14 @@ from flask import Flask, request
 from flask_cors import CORS
 import requests
 import json
+import os
 from urllib.parse import urlparse
 from Authenticator import Authenticator
 
 
 app = Flask(__name__)
 CORS(app)
-auth = Authenticator()
-
+bearer = os.environ["EQUINIX_BEARER"]
 
 @app.route("/health", methods=['GET'])
 def health():
@@ -19,7 +19,7 @@ def health():
 def get_ibx_regions():
     if request.method == 'OPTIONS':
         return ''
-    access_token = auth.get_access_token()
+    
     json_data = request.get_json()
 
     if (('url' in json_data) and ('method' in json_data) and ('metro_code' in json_data)):
@@ -28,16 +28,17 @@ def get_ibx_regions():
         metro_code = json_data["metro_code"]
 
 
-        if urlparse(url).hostname.__contains__("uatapi.equinix.com"):
+        if urlparse(url).hostname.__contains__("playgroundapi.equinix.com"):
             headers = {
-                "Authorization" : "Bearer " + access_token
+                "Authorization" : bearer
             }
             result = requests.get(url, headers=headers)
             j_data = json.loads(result.text)
 
             output = {}
-            output['code'] = j_data['code']
+            output['code'] = metro_code
             output['region'] = j_data['region']
+            output['name'] = j_data['name']
             output['connectedMetros'] = []
             for metro in j_data['connectedMetros']:
                 t = {}
