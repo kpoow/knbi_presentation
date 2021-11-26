@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  api:
+    build: ./api
+    ports:
+      - "3001:5000"
+  document-generation-service:
+    build: ./document-generation-service
+    ports:
+      - "3000:3000"
+
+
+
+
+
+
