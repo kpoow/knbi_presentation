@@ -1,4 +1,4 @@
-## DEMO 1
+## DEMO 2
 
 ### Disclaimer
 This code is vulnerable and should not be used in any production deployments. It's meant to be used for demonstration purposes only.
