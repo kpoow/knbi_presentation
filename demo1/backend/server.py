@@ -32,21 +32,26 @@ def get_ibx_regions():
                 "Authorization" : bearer
             }
             result = requests.get(url, headers=headers)
-            j_data = json.loads(result.text)
 
-            output = {}
-            output['code'] = metro_code
-            output['region'] = j_data['region']
-            output['name'] = j_data['name']
-            output['connectedMetros'] = []
-            for metro in j_data['connectedMetros']:
-                t = {}
-                t['avgLatency'] = metro['avgLatency']
-                t['code'] = metro['code']
-                output['connectedMetros'].append(t) 
             
 
-            return output
+            if ('application/json' in result.headers['content-type']):
+                j_data = json.loads(result.text)
+                output = {}
+                output['code'] = metro_code
+                output['region'] = j_data['region']
+                output['name'] = j_data['name']
+                output['connectedMetros'] = []
+                for metro in j_data['connectedMetros']:
+                    t = {}
+                    t['avgLatency'] = metro['avgLatency']
+                    t['code'] = metro['code']
+                    output['connectedMetros'].append(t) 
+                
+
+                return output
+            else:
+               return {"result":"ok"}     
         else:
             return {"result":"ok"}        
     else:
