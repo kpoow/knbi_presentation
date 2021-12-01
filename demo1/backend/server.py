@@ -35,7 +35,7 @@ def get_ibx_regions():
 
             
 
-            if ('application/json' in result.headers['content-type']):
+            if (('content-type' in result.headers) and ('application/json' in result.headers['content-type'])):
                 j_data = json.loads(result.text)
                 output = {}
                 output['code'] = metro_code
